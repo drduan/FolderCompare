@@ -5,16 +5,15 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-
+using Microsoft.VisualBasic;
 namespace FolderCompare
 {
     public partial class FolderCompare : Form
     {
+        private const string pathTip = "拖动文件夹到此或者输入文件夹路径";
         private IList<FileItem> lista = new List<FileItem>(10);
         private IList<FileItem> listb = new List<FileItem>(10);
         private IList<FileItem> listc = new List<FileItem>(10);
-        private const string pathTip = "拖动文件夹到此或者输入文件夹路径";
-
         public FolderCompare()
         {
             InitializeComponent();
@@ -22,72 +21,54 @@ namespace FolderCompare
             comboBox2.Sorted = true;
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            FolderBrowserDialog dialog = new FolderBrowserDialog();
-            dialog.ShowDialog();
-            if (string.IsNullOrEmpty(dialog.SelectedPath)) return;
-
-            comboBox1.Items.Add(dialog.SelectedPath);
-            comboBox1.SelectedItem = dialog.SelectedPath;
-
-            grid1.Locked = false;
-            initList(comboBox1.Text, ref lista);
-            grid1.Rows = lista.Count + 1;
-            label1.Text = "" + lista.Count + "个文件";
-
-            for (int i = 0; i < lista.Count; i++)
-            {
-                grid1.Cell(i + 1, 1).Text = lista[i].name;
-                grid1.Cell(i + 1, 2).Text = lista[i].size / 1000 + "KB";
-                grid1.Cell(i + 1, 3).Text = lista[i].crttime.ToLongDateString();
-            }
-            grid1.Column(1).AutoFit();
-            grid1.Column(2).AutoFit();
-            grid1.Column(3).AutoFit();
-            grid1.Refresh();
-            grid1.ExtendLastCol = true;
-            grid1.Locked = true;
-            grid1.AllowUserSort = true;
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            FolderBrowserDialog dialog = new FolderBrowserDialog();
-            dialog.ShowDialog();
-            if (string.IsNullOrEmpty(dialog.SelectedPath)) return;
-            comboBox2.Items.Add(dialog.SelectedPath);
-            comboBox2.SelectedItem = dialog.SelectedPath;
-
-            initList(comboBox2.Text, ref listb);
-            label2.Text = "" + listb.Count + "个文件";
-            grid2.Locked = false;
-
-            grid2.Rows = listb.Count + 1;
-            for (int i = 0; i < listb.Count; i++)
-            {
-                grid2.Cell(i + 1, 1).Text = listb[i].name;
-                grid2.Cell(i + 1, 2).Text = listb[i].size / 1000 + "KB";
-                grid2.Cell(i + 1, 3).Text = listb[i].crttime.ToLongDateString();
-            }
-            grid2.ExtendLastCol = true;
-            grid2.Column(1).AutoFit();
-            grid2.Column(2).AutoFit();
-            grid2.Column(3).AutoFit();
-            grid2.Refresh();
-
-            grid2.Locked = true;
-        }
-
-        private void button1_Click(object sender, EventArgs e)
+        public void deleteFileOrFolder(string path)
         {
             try
             {
-                System.Diagnostics.Process.Start(comboBox1.Text);
+                //FileSystem.DeleteDirectory(path, FileIO.UIOption.OnlyErrorDialogs, .RecycleOption.SendToRecycleBin);
+                //File.Delete(path);
+
+
+            Microsoft.VisualBasic.FileIO.FileSystem.DeleteFile(path,
+            Microsoft.VisualBasic.FileIO.UIOption.AllDialogs,
+            Microsoft.VisualBasic.FileIO.RecycleOption.SendToRecycleBin);
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        public void initList(string directory, ref IList<FileItem> list)
+        {
+            if (string.IsNullOrEmpty(directory)) return;
+            var files = Directory.GetFiles(directory);
+            list.Clear();
+            for (int i = 0; i < files.Length; i++)
+            {
+                FileInfo fi = new FileInfo(files[i]);
+                string ext = fi.Extension;
+                FileItem item = new FileItem();
+                //item.name =  fi.Name /*;*/
+                item.name = string.IsNullOrEmpty(fi.Extension) ? fi.Name : fi.Name.Replace(ext, "");
+                item.size = fi.Length;
+                item.ext = fi.Extension;
+                item.fullpath = fi.FullName;
+                item.crttime = fi.LastWriteTime;
+                list.Add(item);
+            }
+        }
+
+        public void resetColor()
+        {
+            for (int i = 0; i < grid1.Rows; i++)
+            {
+                grid1.Cell(i, 1).ForeColor = Color.Black;
+            }
+            for (int i = 0; i < grid2.Rows; i++)
+            {
+                grid2.Cell(i, 1).ForeColor = Color.Black;
             }
         }
 
@@ -127,46 +108,89 @@ namespace FolderCompare
             grid2.Locked = true;
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            grid1.Cols = 4;
-            grid1.Rows = 1;
+            try
+            {
+                System.Diagnostics.Process.Start(comboBox1.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
-            grid2.Cols = 4;
-            grid2.Rows = 1;
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start(comboBox2.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+            dialog.ShowDialog();
+            if (string.IsNullOrEmpty(dialog.SelectedPath)) return;
+
+            comboBox1.Items.Add(dialog.SelectedPath);
+            comboBox1.SelectedItem = dialog.SelectedPath;
 
             grid1.Locked = false;
-            grid1.ExtendLastCol = true;
+            initList(comboBox1.Text, ref lista);
+            grid1.Rows = lista.Count + 1;
+            label1.Text = "" + lista.Count + "个文件";
 
-            grid1.Cell(0, 1).Text = "名称";
-            grid1.Cell(0, 2).Text = "大小";
-            grid1.Cell(0, 3).Text = "上次修改时间";
-
-            grid1.Column(0).Visible = false;
-            grid1.Column(1).Alignment = FlexCell.AlignmentEnum.LeftCenter;
+            for (int i = 0; i < lista.Count; i++)
+            {
+                grid1.Cell(i + 1, 1).Text = lista[i].name;
+                grid1.Cell(i + 1, 2).Text = lista[i].ext;
+                grid1.Cell(i + 1, 3).Text = lista[i].size / 1000.0f + "KB";
+                grid1.Cell(i + 1, 4).Text = lista[i].crttime.ToLongDateString();
+            }
+            grid1.Column(1).AutoFit();
             grid1.Column(2).AutoFit();
             grid1.Column(3).AutoFit();
-            grid1.AutoRedraw = false;
+            grid1.Column(4).AutoFit();
+
             grid1.Refresh();
-            grid1.AutoRedraw = true;
+            grid1.ExtendLastCol = true;
             grid1.Locked = true;
-            label1.Text = "0个文件";
+        }
 
-            grid2.Column(0).Visible = false;
-            grid2.Cell(0, 1).Text = "名称";
-            grid2.Cell(0, 2).Text = "大小";
-            grid2.Cell(0, 3).Text = "上次修改时间";
+        private void button4_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+            dialog.ShowDialog();
+            if (string.IsNullOrEmpty(dialog.SelectedPath)) return;
+            comboBox2.Items.Add(dialog.SelectedPath);
+            comboBox2.SelectedItem = dialog.SelectedPath;
 
-            grid2.Column(1).Alignment = FlexCell.AlignmentEnum.LeftCenter;
+            initList(comboBox2.Text, ref listb);
+            label2.Text = "" + listb.Count + "个文件";
+            grid2.Locked = false;
+
+            grid2.Rows = listb.Count + 1;
+            for (int i = 0; i < listb.Count; i++)
+            {
+                grid2.Cell(i + 1, 1).Text = listb[i].name;
+                grid2.Cell(i + 1, 2).Text = listb[i].ext;
+                grid2.Cell(i + 1, 3).Text = listb[i].size / 1000.0f + "KB";
+                grid2.Cell(i + 1, 4).Text = listb[i].crttime.ToLongDateString();
+            }
+            grid2.ExtendLastCol = true;
+            grid2.Column(1).AutoFit();
             grid2.Column(2).AutoFit();
             grid2.Column(3).AutoFit();
-            grid2.AutoRedraw = false;
+            grid2.Column(4).AutoFit();
+
             grid2.Refresh();
-
-            grid2.AutoRedraw = true;
             grid2.Locked = true;
-
-            label2.Text = "0个文件";
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -183,11 +207,16 @@ namespace FolderCompare
             for (int i = 0; i < lista.Count; i++)
             {
                 grid1.Cell(i + 1, 1).Text = lista[i].name;
-                grid1.Cell(i + 1, 2).Text = lista[i].size / 1000 + "KB"; ;
-                grid1.Cell(i + 1, 3).Text = lista[i].crttime.ToLongDateString();
+                grid1.Cell(i + 1, 2).Text = lista[i].ext;
+                grid1.Cell(i + 1, 3).Text = lista[i].size / 1000.0f + "KB"; ;
+                grid1.Cell(i + 1, 4).Text = lista[i].crttime.ToLongDateString();
             }
             grid1.ExtendLastCol = true;
             grid1.Column(1).AutoFit();
+            grid1.Column(2).AutoFit();
+            grid1.Column(3).AutoFit();
+            grid1.Column(4).AutoFit();
+
             grid1.Refresh();
             resetColor();
             grid1.Locked = true;
@@ -205,47 +234,68 @@ namespace FolderCompare
             for (int i = 0; i < listb.Count; i++)
             {
                 grid2.Cell(i + 1, 1).Text = listb[i].name;
-                grid2.Cell(i + 1, 2).Text = listb[i].size + " byte";
-                grid2.Cell(i + 1, 3).Text = listb[i].crttime.ToLongDateString();
+                grid2.Cell(i + 1, 2).Text = listb[i].ext;
+                grid2.Cell(i + 1, 3).Text = listb[i].size / 1000.0f + "KB";
+                grid2.Cell(i + 1, 4).Text = listb[i].crttime.ToLongDateString();
             }
             grid2.ExtendLastCol = true;
             grid2.Column(1).AutoFit();
+            grid2.Column(2).AutoFit();
+            grid2.Column(3).AutoFit();
+            grid2.Column(4).AutoFit();
+
             grid2.Refresh();
             resetColor();
             grid2.Locked = true;
         }
 
-        public void resetColor()
+        private void Form1_Load(object sender, EventArgs e)
         {
-            for (int i = 0; i < grid1.Rows; i++)
-            {
-                grid1.Cell(i, 1).ForeColor = Color.Black;
-            }
-            for (int i = 0; i < grid2.Rows; i++)
-            {
-                grid2.Cell(i, 1).ForeColor = Color.Black;
-            }
-        }
+            grid1.Cols = 5;
+            grid1.Rows = 1;
 
-        public void initList(string directory, ref IList<FileItem> list)
-        {
-            var files = Directory.GetFiles(directory);
-            list.Clear();
-            for (int i = 0; i < files.Length; i++)
-            {
-                FileInfo fi = new FileInfo(files[i]);
-                string ext = fi.Extension;
-                FileItem item = new FileItem();
-                //item.name =  fi.Name /*;*/
-                item.name = string.IsNullOrEmpty(fi.Extension) ? fi.Name : fi.Name.Replace(ext, "");
-                item.size = fi.Length;
-                item.ext = fi.Extension;
-                item.fullpath = fi.FullName;
-                item.crttime = fi.LastWriteTime;
-                list.Add(item);
-            }
-        }
+            grid2.Cols = 5;
+            grid2.Rows = 1;
 
+            grid1.Locked = false;
+            grid1.ExtendLastCol = true;
+
+            grid1.Cell(0, 1).Text = "名称";
+            grid1.Cell(0, 2).Text = "扩展名";
+            grid1.Cell(0, 3).Text = "大小";
+            grid1.Cell(0, 4).Text = "上次修改时间";
+
+            grid1.Column(0).Visible = false;
+            grid1.Column(1).Alignment = FlexCell.AlignmentEnum.LeftCenter;
+            grid1.Column(2).AutoFit();
+            grid1.Column(3).AutoFit();
+            grid1.Column(4).AutoFit();
+
+            grid1.AutoRedraw = false;
+            grid1.Refresh();
+            grid1.AutoRedraw = true;
+            grid1.Locked = true;
+            label1.Text = "0个文件";
+
+            grid2.Column(0).Visible = false;
+            grid2.Cell(0, 1).Text = "名称";
+            grid2.Cell(0, 2).Text = "扩展名";
+            grid2.Cell(0, 3).Text = "大小";
+            grid2.Cell(0, 4).Text = "上次修改时间";
+
+            grid2.Column(1).Alignment = FlexCell.AlignmentEnum.LeftCenter;
+            grid2.Column(2).AutoFit();
+            grid2.Column(3).AutoFit();
+            grid2.Column(4).AutoFit();
+
+            grid2.AutoRedraw = false;
+            grid2.Refresh();
+
+            grid2.AutoRedraw = true;
+            grid2.Locked = true;
+
+            label2.Text = "0个文件";
+        }
         /// <summary>
         /// 删除1中不同文件
         /// </summary>
@@ -270,6 +320,29 @@ namespace FolderCompare
                         }
                     }
                 }
+                refreshData(null, null);
+            }
+        }
+
+        private void 删除1相同文件ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            IList<string> listd;
+            listd = lista.Select(o => o.name).ToList().Intersect(listb.Select(o => o.name)).ToList();
+
+            DialogResult result = MessageBox.Show("确定要删除" + comboBox1.Text + "中" + listd.Count + "个文件吗？", "删除提示", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                foreach (FileItem item in lista)
+                {
+                    if (listd.Contains(item.name))
+                    {
+                        if (File.Exists(item.fullpath))
+                        {
+                            deleteFileOrFolder(item.fullpath);
+                        }
+                    }
+                }
+                refreshData(null, null);
             }
         }
 
@@ -296,30 +369,10 @@ namespace FolderCompare
                         }
                     }
                 }
+                refreshData(null, null);
             }
+
         }
-
-        private void 删除1相同文件ToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            IList<string> listd;
-            listd = lista.Select(o => o.name).ToList().Intersect(listb.Select(o => o.name)).ToList();
-
-            DialogResult result = MessageBox.Show("确定要删除" + comboBox1.Text + "中" + listd.Count + "个文件吗？", "删除提示", MessageBoxButtons.YesNo);
-            if (result == DialogResult.Yes)
-            {
-                foreach (FileItem item in lista)
-                {
-                    if (listd.Contains(item.name))
-                    {
-                        if (File.Exists(item.fullpath))
-                        {
-                            deleteFileOrFolder(item.fullpath);
-                        }
-                    }
-                }
-            }
-        }
-
         private void 删除2相同文件ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             IList<string> listd;
@@ -338,31 +391,56 @@ namespace FolderCompare
                         }
                     }
                 }
+                refreshData(null,null);
             }
         }
 
-        public void deleteFileOrFolder(string path)
+        private void refreshData(object sender, EventArgs e)
         {
-            try
-            {
-                File.Delete(path);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
+            grid1.Rows = 1;
+            grid2.Rows = 1;
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            try
+            initList(comboBox2.Text, ref listb);
+            label2.Text = "" + listb.Count + "个文件";
+            grid2.Locked = false;
+
+            grid2.Rows = listb.Count + 1;
+            for (int i = 0; i < listb.Count; i++)
             {
-                System.Diagnostics.Process.Start(comboBox2.Text);
+                grid2.Cell(i + 1, 1).Text = listb[i].name;
+                grid2.Cell(i + 1, 2).Text = listb[i].ext;
+                grid2.Cell(i + 1, 3).Text = listb[i].size / 1000.0f + "KB";
+                grid2.Cell(i + 1, 4).Text = listb[i].crttime.ToLongDateString();
             }
-            catch (Exception ex)
+            grid2.ExtendLastCol = true;
+            grid2.Column(1).AutoFit();
+            grid2.Column(2).AutoFit();
+            grid2.Column(3).AutoFit();
+            grid2.Column(4).AutoFit();
+
+            grid2.Refresh();
+            grid2.Locked = true;
+
+
+            initList(comboBox1.Text, ref lista);
+            grid1.Rows = lista.Count + 1;
+            label1.Text = "" + lista.Count + "个文件";
+
+            for (int i = 0; i < lista.Count; i++)
             {
-                MessageBox.Show(ex.Message);
+                grid1.Cell(i + 1, 1).Text = lista[i].name;
+                grid1.Cell(i + 1, 2).Text = lista[i].ext;
+                grid1.Cell(i + 1, 3).Text = lista[i].size / 1000.0f + "KB";
+                grid1.Cell(i + 1, 4).Text = lista[i].crttime.ToLongDateString();
             }
+            grid1.Column(1).AutoFit();
+            grid1.Column(2).AutoFit();
+            grid1.Column(3).AutoFit();
+            grid1.Column(4).AutoFit();
+
+            grid1.Refresh();
+            grid1.ExtendLastCol = true;
+            grid1.Locked = true;
         }
     }
 }
