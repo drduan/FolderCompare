@@ -31,24 +31,26 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FolderCompare));
             this.grid1 = new FlexCell.Grid();
-            this.button3 = new System.Windows.Forms.Button();
             this.grid2 = new FlexCell.Grid();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.button4 = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.文件删除ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.删除1相同文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.删除2相同文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.删除1相同文件ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.删除2相同文件ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.比较ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.文件删除ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.删除1相同文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.删除2相同文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.比较ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.删除1相同文件ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.删除2相同文件ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -73,24 +75,11 @@
             this.grid1.ExtendLastCol = true;
             this.grid1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.grid1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.grid1.Location = new System.Drawing.Point(4, 71);
+            this.grid1.Location = new System.Drawing.Point(6, 45);
             this.grid1.Name = "grid1";
             this.grid1.Size = new System.Drawing.Size(550, 483);
             this.grid1.TabIndex = 2;
             this.grid1.UncheckedImage = null;
-            // 
-            // button3
-            // 
-            this.button3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button3.BackgroundImage")));
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Location = new System.Drawing.Point(541, 19);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(16, 16);
-            this.button3.TabIndex = 4;
-            this.button3.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // grid2
             // 
@@ -122,7 +111,7 @@
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(6, 17);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(528, 20);
+            this.comboBox1.Size = new System.Drawing.Size(509, 20);
             this.comboBox1.TabIndex = 9;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
@@ -131,24 +120,11 @@
             this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(15, 15);
+            this.comboBox2.Location = new System.Drawing.Point(15, 17);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(511, 20);
+            this.comboBox2.Size = new System.Drawing.Size(487, 20);
             this.comboBox2.TabIndex = 10;
             this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
-            // 
-            // button4
-            // 
-            this.button4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button4.BackgroundImage")));
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Location = new System.Drawing.Point(532, 17);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(16, 16);
-            this.button4.TabIndex = 11;
-            this.button4.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // menuStrip1
             // 
@@ -160,6 +136,56 @@
             this.menuStrip1.Size = new System.Drawing.Size(1134, 25);
             this.menuStrip1.TabIndex = 12;
             this.menuStrip1.Text = "menuStrip1";
+            // 
+            // 文件删除ToolStripMenuItem
+            // 
+            this.文件删除ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.删除1相同文件ToolStripMenuItem,
+            this.删除2相同文件ToolStripMenuItem,
+            this.删除1相同文件ToolStripMenuItem1,
+            this.删除2相同文件ToolStripMenuItem1});
+            this.文件删除ToolStripMenuItem.Name = "文件删除ToolStripMenuItem";
+            this.文件删除ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D1)));
+            this.文件删除ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
+            this.文件删除ToolStripMenuItem.Text = "文件删除";
+            // 
+            // 删除1相同文件ToolStripMenuItem
+            // 
+            this.删除1相同文件ToolStripMenuItem.Name = "删除1相同文件ToolStripMenuItem";
+            this.删除1相同文件ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D1)));
+            this.删除1相同文件ToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.删除1相同文件ToolStripMenuItem.Text = "删除1不同文件";
+            this.删除1相同文件ToolStripMenuItem.Click += new System.EventHandler(this.删除1相同文件ToolStripMenuItem_Click);
+            // 
+            // 删除2相同文件ToolStripMenuItem
+            // 
+            this.删除2相同文件ToolStripMenuItem.Name = "删除2相同文件ToolStripMenuItem";
+            this.删除2相同文件ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D2)));
+            this.删除2相同文件ToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.删除2相同文件ToolStripMenuItem.Text = "删除2不同文件";
+            this.删除2相同文件ToolStripMenuItem.Click += new System.EventHandler(this.删除2相同文件ToolStripMenuItem_Click);
+            // 
+            // 删除1相同文件ToolStripMenuItem1
+            // 
+            this.删除1相同文件ToolStripMenuItem1.Name = "删除1相同文件ToolStripMenuItem1";
+            this.删除1相同文件ToolStripMenuItem1.Size = new System.Drawing.Size(199, 22);
+            this.删除1相同文件ToolStripMenuItem1.Text = "删除1相同文件";
+            this.删除1相同文件ToolStripMenuItem1.Click += new System.EventHandler(this.删除1相同文件ToolStripMenuItem1_Click);
+            // 
+            // 删除2相同文件ToolStripMenuItem1
+            // 
+            this.删除2相同文件ToolStripMenuItem1.Name = "删除2相同文件ToolStripMenuItem1";
+            this.删除2相同文件ToolStripMenuItem1.Size = new System.Drawing.Size(199, 22);
+            this.删除2相同文件ToolStripMenuItem1.Text = "删除2相同文件";
+            this.删除2相同文件ToolStripMenuItem1.Click += new System.EventHandler(this.删除2相同文件ToolStripMenuItem1_Click);
+            // 
+            // 比较ToolStripMenuItem
+            // 
+            this.比较ToolStripMenuItem.Name = "比较ToolStripMenuItem";
+            this.比较ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.B)));
+            this.比较ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
+            this.比较ToolStripMenuItem.Text = "文件比较";
+            this.比较ToolStripMenuItem.Click += new System.EventHandler(this.btn1_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -199,37 +225,11 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "label2";
             // 
-            // 文件删除ToolStripMenuItem
-            // 
-            this.文件删除ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.删除1相同文件ToolStripMenuItem,
-            this.删除2相同文件ToolStripMenuItem,
-            this.删除1相同文件ToolStripMenuItem1,
-            this.删除2相同文件ToolStripMenuItem1});
-            this.文件删除ToolStripMenuItem.Name = "文件删除ToolStripMenuItem";
-            this.文件删除ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D1)));
-            this.文件删除ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
-            this.文件删除ToolStripMenuItem.Text = "文件删除";
-            // 
-            // 删除1相同文件ToolStripMenuItem
-            // 
-            this.删除1相同文件ToolStripMenuItem.Name = "删除1相同文件ToolStripMenuItem";
-            this.删除1相同文件ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D1)));
-            this.删除1相同文件ToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
-            this.删除1相同文件ToolStripMenuItem.Text = "删除1不同文件";
-            this.删除1相同文件ToolStripMenuItem.Click += new System.EventHandler(this.删除1相同文件ToolStripMenuItem_Click);
-            // 
-            // 删除2相同文件ToolStripMenuItem
-            // 
-            this.删除2相同文件ToolStripMenuItem.Name = "删除2相同文件ToolStripMenuItem";
-            this.删除2相同文件ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D2)));
-            this.删除2相同文件ToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
-            this.删除2相同文件ToolStripMenuItem.Text = "删除2不同文件";
-            this.删除2相同文件ToolStripMenuItem.Click += new System.EventHandler(this.删除2相同文件ToolStripMenuItem_Click);
-            // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.grid1);
             this.groupBox1.Controls.Add(this.button3);
             this.groupBox1.Location = new System.Drawing.Point(4, 28);
             this.groupBox1.Name = "groupBox1";
@@ -240,6 +240,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.button2);
             this.groupBox2.Controls.Add(this.comboBox2);
             this.groupBox2.Controls.Add(this.button4);
             this.groupBox2.Location = new System.Drawing.Point(575, 28);
@@ -249,27 +250,57 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "文件夹2";
             // 
-            // 比较ToolStripMenuItem
+            // button3
             // 
-            this.比较ToolStripMenuItem.Name = "比较ToolStripMenuItem";
-            this.比较ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.B)));
-            this.比较ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
-            this.比较ToolStripMenuItem.Text = "文件比较";
-            this.比较ToolStripMenuItem.Click += new System.EventHandler(this.btn1_Click);
+            this.button3.BackgroundImage = global::FolderCompare.Properties.Resources.select;
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Location = new System.Drawing.Point(521, 19);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(16, 16);
+            this.button3.TabIndex = 4;
+            this.button3.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // 删除1相同文件ToolStripMenuItem1
+            // button4
             // 
-            this.删除1相同文件ToolStripMenuItem1.Name = "删除1相同文件ToolStripMenuItem1";
-            this.删除1相同文件ToolStripMenuItem1.Size = new System.Drawing.Size(199, 22);
-            this.删除1相同文件ToolStripMenuItem1.Text = "删除1相同文件";
-            this.删除1相同文件ToolStripMenuItem1.Click += new System.EventHandler(this.删除1相同文件ToolStripMenuItem1_Click);
+            this.button4.BackgroundImage = global::FolderCompare.Properties.Resources.select;
+            this.button4.FlatAppearance.BorderSize = 0;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Location = new System.Drawing.Point(508, 19);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(16, 16);
+            this.button4.TabIndex = 11;
+            this.button4.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
-            // 删除2相同文件ToolStripMenuItem1
+            // button1
             // 
-            this.删除2相同文件ToolStripMenuItem1.Name = "删除2相同文件ToolStripMenuItem1";
-            this.删除2相同文件ToolStripMenuItem1.Size = new System.Drawing.Size(199, 22);
-            this.删除2相同文件ToolStripMenuItem1.Text = "删除2相同文件";
-            this.删除2相同文件ToolStripMenuItem1.Click += new System.EventHandler(this.删除2相同文件ToolStripMenuItem1_Click);
+            this.button1.BackgroundImage = global::FolderCompare.Properties.Resources.folder;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(543, 19);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(16, 16);
+            this.button1.TabIndex = 10;
+            this.button1.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.BackgroundImage = global::FolderCompare.Properties.Resources.folder;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Location = new System.Drawing.Point(530, 19);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(16, 16);
+            this.button2.TabIndex = 11;
+            this.button2.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // FolderCompare
             // 
@@ -279,7 +310,6 @@
             this.ClientSize = new System.Drawing.Size(1134, 582);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.grid2);
-            this.Controls.Add(this.grid1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
@@ -319,6 +349,8 @@
         private System.Windows.Forms.ToolStripMenuItem 比较ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 删除1相同文件ToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem 删除2相同文件ToolStripMenuItem1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
 
