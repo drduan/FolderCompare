@@ -1,0 +1,17 @@
+﻿<Properties StartupConfiguration="{D8AE01FF-1887-4B66-9A8F-F824495AC83B}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="FolderCompare/FolderCompare.Designer.cs">
+    <Files>
+      <File FileName="FolderCompare/FolderCompare.cs" Line="270" Column="41" />
+      <File FileName="FolderCompare/FileItem.cs" Line="1" Column="1" />
+      <File FileName="FolderCompare/FolderCompare.resx" Line="1" Column="1" />
+      <File FileName="FolderCompare/FolderCompare.Designer.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.FolderCompare PreferredExecutionTarget="MonoDevelop.Default" />
+  <MultiItemStartupConfigurations />
+</Properties>

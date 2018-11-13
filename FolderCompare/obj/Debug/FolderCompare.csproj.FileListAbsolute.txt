@@ -1,9 +1,15 @@
-c:\users\administrator\documents\visual studio 2015\Projects\FolderCompare\FolderCompare\bin\Debug\FolderCompare.exe
-c:\users\administrator\documents\visual studio 2015\Projects\FolderCompare\FolderCompare\bin\Debug\FolderCompare.pdb
-c:\users\administrator\documents\visual studio 2015\Projects\FolderCompare\FolderCompare\bin\Debug\FlexCell.dll
-c:\users\administrator\documents\visual studio 2015\Projects\FolderCompare\FolderCompare\obj\Debug\FolderCompare.csprojResolveAssemblyReference.cache
-c:\users\administrator\documents\visual studio 2015\Projects\FolderCompare\FolderCompare\obj\Debug\FolderCompare.Properties.Resources.resources
-c:\users\administrator\documents\visual studio 2015\Projects\FolderCompare\FolderCompare\obj\Debug\FolderCompare.csproj.GenerateResource.Cache
-c:\users\administrator\documents\visual studio 2015\Projects\FolderCompare\FolderCompare\obj\Debug\FolderCompare.exe
-c:\users\administrator\documents\visual studio 2015\Projects\FolderCompare\FolderCompare\obj\Debug\FolderCompare.pdb
-c:\users\administrator\documents\visual studio 2015\Projects\FolderCompare\FolderCompare\obj\Debug\FolderCompare.FolderCompare.resources
+c:/users/administrator/documents/visual studio 2015/Projects/FolderCompare/FolderCompare/bin/Debug/FolderCompare.exe
+c:/users/administrator/documents/visual studio 2015/Projects/FolderCompare/FolderCompare/bin/Debug/FolderCompare.pdb
+c:/users/administrator/documents/visual studio 2015/Projects/FolderCompare/FolderCompare/bin/Debug/FlexCell.dll
+c:/users/administrator/documents/visual studio 2015/Projects/FolderCompare/FolderCompare/obj/Debug/FolderCompare.csprojResolveAssemblyReference.cache
+c:/users/administrator/documents/visual studio 2015/Projects/FolderCompare/FolderCompare/obj/Debug/FolderCompare.Properties.Resources.resources
+c:/users/administrator/documents/visual studio 2015/Projects/FolderCompare/FolderCompare/obj/Debug/FolderCompare.csproj.GenerateResource.Cache
+c:/users/administrator/documents/visual studio 2015/Projects/FolderCompare/FolderCompare/obj/Debug/FolderCompare.exe
+c:/users/administrator/documents/visual studio 2015/Projects/FolderCompare/FolderCompare/obj/Debug/FolderCompare.pdb
+c:/users/administrator/documents/visual studio 2015/Projects/FolderCompare/FolderCompare/obj/Debug/FolderCompare.FolderCompare.resources
+/Users/xudong/Downloads/FolderCompare/FolderCompare/obj/Debug/FolderCompare.csprojAssemblyReference.cache
+/Users/xudong/Downloads/FolderCompare/FolderCompare/obj/Debug/FolderCompare.FolderCompare.resources
+/Users/xudong/Downloads/FolderCompare/FolderCompare/obj/Debug/FolderCompare.Properties.Resources.resources
+/Users/xudong/Downloads/FolderCompare/FolderCompare/obj/Debug/FolderCompare.csproj.GenerateResource.cache
+/Users/xudong/Downloads/FolderCompare/FolderCompare/obj/Debug/FolderCompare.csproj.CoreCompileInputs.cache
+/Users/xudong/Downloads/FolderCompare/FolderCompare/obj/Debug/FolderCompare.pdb
