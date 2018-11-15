@@ -1,6 +1,6 @@
 # Prerequisites
-*.d
-
+*..DS_Store
+debug/
 # Compiled Object files
 *.slo
 *.lo
@@ -14,7 +14,6 @@
 # Compiled Dynamic libraries
 *.so
 *.dylib
-*.dll
 
 # Fortran module files
 *.mod
