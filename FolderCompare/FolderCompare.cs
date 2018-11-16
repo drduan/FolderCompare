@@ -4,6 +4,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 using Microsoft.VisualBasic;
 namespace FolderCompare
@@ -25,13 +26,12 @@ namespace FolderCompare
         {
             try
             {
-                //FileSystem.DeleteDirectory(path, FileIO.UIOption.OnlyErrorDialogs, .RecycleOption.SendToRecycleBin);
-                //File.Delete(path);
+               File.Delete(path);
 
 
-            Microsoft.VisualBasic.FileIO.FileSystem.DeleteFile(path,
-            Microsoft.VisualBasic.FileIO.UIOption.AllDialogs,
-            Microsoft.VisualBasic.FileIO.RecycleOption.SendToRecycleBin);
+            //Microsoft.VisualBasic.FileIO.FileSystem.DeleteFile(path,
+            //Microsoft.VisualBasic.FileIO.UIOption.OnlyErrorDialogs,
+            //Microsoft.VisualBasic.FileIO.RecycleOption.SendToRecycleBin);
 
             }
             catch (Exception ex)
@@ -74,8 +74,14 @@ namespace FolderCompare
 
         private void btn1_Click(object sender, EventArgs e)
         {
+
+            if (grid1.Rows <2 || grid2.Rows <2)
+                return;
+
             grid1.Locked = false;
             grid2.Locked = false;
+
+
 
             for (int i = 1; i < grid1.Rows; i++)
             {
@@ -161,6 +167,7 @@ namespace FolderCompare
             grid1.Refresh();
             grid1.ExtendLastCol = true;
             grid1.Locked = true;
+            btn1_Click(null,null);
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -191,6 +198,7 @@ namespace FolderCompare
 
             grid2.Refresh();
             grid2.Locked = true;
+            btn1_Click(null, null);
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -220,6 +228,7 @@ namespace FolderCompare
             grid1.Refresh();
             resetColor();
             grid1.Locked = true;
+            btn1_Click(null, null);
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
@@ -247,6 +256,7 @@ namespace FolderCompare
             grid2.Refresh();
             resetColor();
             grid2.Locked = true;
+            btn1_Click(null, null);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -306,10 +316,16 @@ namespace FolderCompare
         {
             IList<string> listd;
             listd = lista.Select(o => o.name).ToList().Except(listb.Select(o => o.name)).ToList();
+            if (listd.Count == 0 )
+            {
+                MessageBox.Show("未检测到文件夹1中不同文件");
+                return;
 
-            DialogResult result = MessageBox.Show("确定要删除" + comboBox1.Text + "中" + listd.Count + "个文件吗？", "删除提示", MessageBoxButtons.YesNo);
+            }
+            DialogResult result = MessageBox.Show("确定要删除" + comboBox1.Text + "中不同文件吗？", "删除提示", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
+                Cursor.Current = Cursors.WaitCursor;
                 foreach (FileItem item in lista)
                 {
                     if (listd.Contains(item.name))
@@ -321,6 +337,7 @@ namespace FolderCompare
                     }
                 }
                 refreshData(null, null);
+                Cursor.Current = Cursors.Default;
             }
         }
 
@@ -328,10 +345,16 @@ namespace FolderCompare
         {
             IList<string> listd;
             listd = lista.Select(o => o.name).ToList().Intersect(listb.Select(o => o.name)).ToList();
+            if (listd.Count == 0)
+            {
+                MessageBox.Show("未检测到文件夹1中重复文件");
+                return;
 
-            DialogResult result = MessageBox.Show("确定要删除" + comboBox1.Text + "中" + listd.Count + "个文件吗？", "删除提示", MessageBoxButtons.YesNo);
+            }
+            DialogResult result = MessageBox.Show("确定要删除" + comboBox1.Text + "中重复文件吗？", "删除提示", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
+                Cursor.Current = Cursors.WaitCursor;
                 foreach (FileItem item in lista)
                 {
                     if (listd.Contains(item.name))
@@ -343,6 +366,7 @@ namespace FolderCompare
                     }
                 }
                 refreshData(null, null);
+                Cursor.Current = Cursors.Default;
             }
         }
 
@@ -355,10 +379,16 @@ namespace FolderCompare
         {
             IList<string> listd;
             listd = listb.Select(o => o.name).ToList().Except(lista.Select(o => o.name)).ToList();
+            if (listd.Count == 0)
+            {
+                MessageBox.Show("未检测到文件夹2中不同文件");
+                return;
 
-            DialogResult result = MessageBox.Show("确定要删除" + comboBox2.Text + "中" + listd.Count + "个文件吗？", "删除提示", MessageBoxButtons.YesNo);
+            }
+            DialogResult result = MessageBox.Show("确定要删除" + comboBox2.Text + "中不同文件吗？", "删除提示", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
+                Cursor.Current = Cursors.WaitCursor;
                 foreach (FileItem item in listb)
                 {
                     if (listd.Contains(item.name))
@@ -370,6 +400,7 @@ namespace FolderCompare
                     }
                 }
                 refreshData(null, null);
+                Cursor.Current = Cursors.Default;
             }
 
         }
@@ -378,10 +409,17 @@ namespace FolderCompare
             int i = 1;
             IList<string> listd;
             listd = listb.Select(o => o.name).ToList().Intersect(lista.Select(o => o.name)).ToList();
+             if (listd.Count == 0)
+            {
+                MessageBox.Show("未检测到文件夹2中重复文件");
+                return;
 
-            DialogResult result = MessageBox.Show("确定要删除" + comboBox2.Text + "中" + listd.Count + "个文件吗？", "删除提示", MessageBoxButtons.YesNo);
+            }
+            DialogResult result = MessageBox.Show("确定要删除" + comboBox2.Text + "中重复文件吗？", "删除提示", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
+                Cursor.Current = Cursors.WaitCursor;
+
                 foreach (FileItem item in listb)
                 {
                     if (listd.Contains(item.name))
@@ -395,6 +433,8 @@ namespace FolderCompare
                 }
                
                 refreshData(null,null);
+                Cursor.Current = Cursors.Default;
+
             }
             //MessageBox.Show("已删除文件夹1中"+i+"个文件");
         }
@@ -445,6 +485,10 @@ namespace FolderCompare
             grid1.Refresh();
             grid1.ExtendLastCol = true;
             grid1.Locked = true;
+
+
+
+            btn1_Click(null,null);
         }
 
         private void toolStripComboBox1_Click(object sender, EventArgs e)
