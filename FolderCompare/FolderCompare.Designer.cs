@@ -145,7 +145,6 @@
             // 比较ToolStripMenuItem
             // 
             this.比较ToolStripMenuItem.Name = "比较ToolStripMenuItem";
-            this.比较ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.B)));
             this.比较ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
             this.比较ToolStripMenuItem.Text = "文件比较";
             this.比较ToolStripMenuItem.Click += new System.EventHandler(this.btn1_Click);
@@ -158,37 +157,34 @@
             this.删除1相同文件ToolStripMenuItem1,
             this.删除2相同文件ToolStripMenuItem1});
             this.文件删除ToolStripMenuItem.Name = "文件删除ToolStripMenuItem";
-            this.文件删除ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D1)));
             this.文件删除ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
             this.文件删除ToolStripMenuItem.Text = "文件删除";
             // 
             // 删除1相同文件ToolStripMenuItem
             // 
             this.删除1相同文件ToolStripMenuItem.Name = "删除1相同文件ToolStripMenuItem";
-            this.删除1相同文件ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D1)));
-            this.删除1相同文件ToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.删除1相同文件ToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.删除1相同文件ToolStripMenuItem.Text = "删除1不同文件";
             this.删除1相同文件ToolStripMenuItem.Click += new System.EventHandler(this.删除1相同文件ToolStripMenuItem_Click);
             // 
             // 删除2相同文件ToolStripMenuItem
             // 
             this.删除2相同文件ToolStripMenuItem.Name = "删除2相同文件ToolStripMenuItem";
-            this.删除2相同文件ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D2)));
-            this.删除2相同文件ToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.删除2相同文件ToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.删除2相同文件ToolStripMenuItem.Text = "删除2不同文件";
             this.删除2相同文件ToolStripMenuItem.Click += new System.EventHandler(this.删除2相同文件ToolStripMenuItem_Click);
             // 
             // 删除1相同文件ToolStripMenuItem1
             // 
             this.删除1相同文件ToolStripMenuItem1.Name = "删除1相同文件ToolStripMenuItem1";
-            this.删除1相同文件ToolStripMenuItem1.Size = new System.Drawing.Size(199, 22);
+            this.删除1相同文件ToolStripMenuItem1.Size = new System.Drawing.Size(155, 22);
             this.删除1相同文件ToolStripMenuItem1.Text = "删除1相同文件";
             this.删除1相同文件ToolStripMenuItem1.Click += new System.EventHandler(this.删除1相同文件ToolStripMenuItem1_Click);
             // 
             // 删除2相同文件ToolStripMenuItem1
             // 
             this.删除2相同文件ToolStripMenuItem1.Name = "删除2相同文件ToolStripMenuItem1";
-            this.删除2相同文件ToolStripMenuItem1.Size = new System.Drawing.Size(199, 22);
+            this.删除2相同文件ToolStripMenuItem1.Size = new System.Drawing.Size(155, 22);
             this.删除2相同文件ToolStripMenuItem1.Text = "删除2相同文件";
             this.删除2相同文件ToolStripMenuItem1.Click += new System.EventHandler(this.删除2相同文件ToolStripMenuItem1_Click);
             // 
@@ -238,7 +234,7 @@
             this.groupBox1.Size = new System.Drawing.Size(573, 545);
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "文件夹1 ";
+            this.groupBox1.Text = "文件夹-1 ";
             // 
             // button1
             // 
@@ -280,7 +276,7 @@
             this.groupBox2.Size = new System.Drawing.Size(545, 545);
             this.groupBox2.TabIndex = 16;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "文件夹2";
+            this.groupBox2.Text = "文件夹-2";
             // 
             // button2
             // 
