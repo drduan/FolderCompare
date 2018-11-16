@@ -375,6 +375,7 @@ namespace FolderCompare
         }
         private void 删除2相同文件ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            int i = 1;
             IList<string> listd;
             listd = listb.Select(o => o.name).ToList().Intersect(lista.Select(o => o.name)).ToList();
 
@@ -388,11 +389,14 @@ namespace FolderCompare
                         if (File.Exists(item.fullpath))
                         {
                             deleteFileOrFolder(item.fullpath);
+                            i++;
                         }
                     }
                 }
+               
                 refreshData(null,null);
             }
+            //MessageBox.Show("已删除文件夹1中"+i+"个文件");
         }
 
         private void refreshData(object sender, EventArgs e)
@@ -441,6 +445,11 @@ namespace FolderCompare
             grid1.Refresh();
             grid1.ExtendLastCol = true;
             grid1.Locked = true;
+        }
+
+        private void toolStripComboBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -105,7 +105,6 @@
     <Content Include="20181114044755518_easyicon_net_32.ico" />
     <Content Include="easyicon.ico" />
     <None Include="Resources\compare.png" />
-    <None Include="Resources\select.png" />
     <None Include="Resources\Refresh.png" />
   </ItemGroup>
   <ItemGroup>
