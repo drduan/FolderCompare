@@ -1,5 +1,5 @@
 # Prerequisites
-*.d
+*.DS_Store
 debug/
 # Compiled Object files
 *.slo
